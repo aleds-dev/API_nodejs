@@ -1,28 +1,12 @@
+import 'reflect-metadata';
 import express from 'express';
+import "./database";
+import { router } from './routes';
 
 const app = express();
 
-/**
-* Get => Busrcar
-* Post => Salvar
-* Put => Alterar
-* Delete => Deletar
-* Patch => Alteração específica
-**/
+app.use(express.json());
 
-// http://localhost:3333/users
-app.get("/", (request, response) => {
-    
-return response.json({ massage: "hello world - NLW4"});
-})
+app.use(router);
 
-//1 parametro = rota(recurso API)
-//2 parametro = request, response
-
-app.post("/", (request, response) => {
-    // Recebeu os dados para salvar 
-    return response.json({ massage: "Os dados foram salvos com sucesso!"});
-});
-
-
-app.listen(3333, () => console.log("Funfou"));
+app.listen(3333, () => console.log("servidor funcionando...!"));
